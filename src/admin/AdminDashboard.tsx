@@ -9,6 +9,7 @@ import {
   type DbsStatus,
 } from '../data/pipeline';
 import type { ApplicationRecord, ApplicationSummary, DocumentSlot } from '../types';
+import { DEMO_MODE } from '../brand';
 
 const DOCUMENT_LABELS: Record<DocumentSlot, string> = {
   rightToWorkEvidence: 'Right to work evidence',
@@ -147,9 +148,13 @@ export function AdminDashboard({ getToken }: { getToken: () => Promise<string | 
             <div className="doc-viewer__bar">
               <strong>{preview.name}</strong>
               <span>
-                <a className="btn btn--ghost btn--small" href={preview.url} download>
-                  Download
-                </a>{' '}
+                {!DEMO_MODE && (
+                  <>
+                    <a className="btn btn--ghost btn--small" href={preview.url} download>
+                      Download
+                    </a>{' '}
+                  </>
+                )}
                 <button type="button" className="btn btn--secondary btn--small" onClick={closePreview}>
                   Close
                 </button>

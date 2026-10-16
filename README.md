@@ -21,7 +21,7 @@ fictional sample candidates. No Supabase, Clerk, Blob storage, Resend or
 WhatsApp account is needed, so a demo deployment costs nothing to run.
 
 - **Candidate application** and **Staff pipeline** buttons in the dark bar
-  at the top switch between the two views (`#/` and `#/admin`).
+  at the top switch between the two views (`#apply` and `#admin`).
 - The staff pipeline opens with 9 sample candidates spread across every
   stage, including one ready to move to offer (Hannah Clarke) and one whose
   DBS isn't back yet (Sofia Rossi), which shows the DBS-before-offer rule.

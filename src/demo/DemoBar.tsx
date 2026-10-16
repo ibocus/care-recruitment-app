@@ -23,8 +23,9 @@ export function DemoBar({ view }: { view: 'apply' | 'admin' }) {
 
   const reset = () => {
     resetDemo();
-    window.location.hash = view === 'admin' ? '#/admin' : '#/';
-    window.location.reload();
+    setToast('Demo reset: sample candidates restored.');
+    // Remount the views in place (no page reload, which some hosts block).
+    window.dispatchEvent(new Event('demo:reset'));
   };
 
   return (
@@ -32,10 +33,10 @@ export function DemoBar({ view }: { view: 'apply' | 'admin' }) {
       <div className="demo-bar" role="navigation" aria-label="Demo controls">
         <span className="demo-bar__label">Demo · sample data only</span>
         <span className="demo-bar__links">
-          <a href="#/" className={view === 'apply' ? 'demo-bar__link demo-bar__link--active' : 'demo-bar__link'}>
+          <a href="#apply" className={view === 'apply' ? 'demo-bar__link demo-bar__link--active' : 'demo-bar__link'}>
             Candidate application
           </a>
-          <a href="#/admin" className={view === 'admin' ? 'demo-bar__link demo-bar__link--active' : 'demo-bar__link'}>
+          <a href="#admin" className={view === 'admin' ? 'demo-bar__link demo-bar__link--active' : 'demo-bar__link'}>
             Staff pipeline
           </a>
           <button type="button" className="demo-bar__reset" onClick={reset}>
