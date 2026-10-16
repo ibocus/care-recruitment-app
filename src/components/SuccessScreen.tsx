@@ -1,4 +1,5 @@
 import type { ApplicationData } from '../types';
+import { DEMO_MODE } from '../brand';
 
 interface SuccessScreenProps {
   data: ApplicationData;
@@ -26,16 +27,21 @@ export function SuccessScreen({ data, referenceId, onStartNew }: SuccessScreenPr
         is <strong>{referenceId}</strong>.
       </p>
       <p className="success-screen__note">
-        Your application has been saved and the team has been notified. You can also keep a copy for your own
-        records below.
+        {DEMO_MODE
+          ? 'In the demo, this application now appears in the Staff pipeline view.'
+          : 'Your application has been saved and the team has been notified. You can also keep a copy for your own records below.'}
       </p>
       <div className="success-screen__actions">
-        <button type="button" className="btn btn--primary" onClick={downloadJson}>
-          Download application (JSON)
-        </button>
-        <button type="button" className="btn btn--secondary" onClick={() => window.print()}>
-          Print / save as PDF
-        </button>
+        {!DEMO_MODE && (
+          <>
+            <button type="button" className="btn btn--primary" onClick={downloadJson}>
+              Download application (JSON)
+            </button>
+            <button type="button" className="btn btn--secondary" onClick={() => window.print()}>
+              Print / save as PDF
+            </button>
+          </>
+        )}
         <button type="button" className="btn btn--ghost" onClick={onStartNew}>
           Start a new application
         </button>
